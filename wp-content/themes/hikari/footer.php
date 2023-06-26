@@ -1,7 +1,7 @@
 <footer class="c-footer">
         <div class="c-footer__logo">
             <div class="l-container">
-                <a href="#"><img src="assets/img/logo.png" alt=""></a>
+                <a href="<?php echo home_url('/')?>"><img src="<?php echo get_template_directory_uri()?>/assets/img/logo.png" alt=""></a>
             </div>
         </div>
         <div class="c-footer__main">

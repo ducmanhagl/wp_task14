@@ -73,8 +73,9 @@
                                         <?php $categories_list = get_the_category( $post->ID ); ?>
                                         <?php foreach ($categories_list as $cat) :?> 
                                             <?php $color_list = get_field('colors', 'category_'.$cat->term_id);?>
+                                            <?php $category_link_2 = get_category_link($cat->cat_ID);?>
                                             <i class="c-dotcat" style="background-color: <?php echo $color_list?>"></i>
-                                            <a href="news-cat.html"><?php echo $cat->name;?></a>
+                                            <a href="<?php echo $category_link_2; ?>"><?php echo $cat->name;?></a>
                                         <?php endforeach; ?>
                                         </span>
                                     </div>
@@ -108,8 +109,8 @@
                                         <?php if($cat->name == $category->name):?>
                                             <?php $color_list_2 = get_field('colors', 'category_'.$cat->term_id);?>
                                         <i class="c-dotcat" style="background-color: <?php echo $color_list_2?>"></i>
-
-                                        <a href="">
+                                            <?php $category_link_2 = get_category_link($cat->cat_ID);?>
+                                        <a href=" <?php echo $category_link_2; ?>">
                                             <?php echo $cat->name;?>
                                         </a>
                                         <?php endif;?>
@@ -152,7 +153,7 @@
                                 $publish_query->the_post(); 
                             ?>
                             <li class="c-gridpost__item">
-                                <a href="">
+                                <a href="<?php the_permalink(); ?>">
                                     <div class="c-gridpost__thumb">
                                     <?php if (has_post_thumbnail( $post->ID ) ): ?>
                                         <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
@@ -170,7 +171,7 @@
                 </div>
                 <div class="l-btn">
                     <div class="c-btn c-btn--small">
-                        <a href="publish.html">出版物一覧を見る</a>
+                        <a href="<?php echo home_url('/publish');?>">出版物一覧を見る</a>
                     </div>
                 </div>
             </div>
