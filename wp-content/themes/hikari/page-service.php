@@ -21,69 +21,58 @@
 				<p class="notice">ひかり税理士法人がご提供するすべてのサービスを目的別に検索していただけます</p>
 				<!-- =======checkArea====== -->
 				<div class=" p-service__checkArea">
-				    <form id="serviceSearch" method="get" action="#">
+				<form id="serviceSearch" method="post" action="filter_service">
+					<div class="checkArea__form">
+						<legend class="servicesList-heading">サービスの対象で選ぶ</legend>
+						<div class="checkArea__inner">
+						<?php
+							$terms2 = get_terms(array( 
+								'taxonomy' => 'service_cat',
+								'orderby'    => 'ID'
+							));
+						?>
+						<?php if ($terms2):?>
+						<?php foreach ($terms2 as $term) : ?>
+							<div class="c-w240">
+								<label>
+									<input class="chkbutton" type="checkbox" name="my_checkbox[]" onchange="sendQuery()" value="<?php echo ( $term->slug)?>" ><?php echo ( $term->name)?></label>
+							</div>
+							<?php endforeach;?>	
+						<?php endif;?>	
+						</div>
+					</div>
 
-					    <div class="checkArea__form">
-					        <legend class="servicesList-heading">サービスの対象で選ぶ</legend>
-					        <div class="checkArea__inner">
-					            <div class="c-w240">
-					                <label>
-					                    <input class="chkbutton" type="checkbox" name="" value="2" checked="">事業者の方</label>
-					            </div>
-					            <div class="c-w240">
-					                <label>
-					                    <input class="chkbutton" type="checkbox" name="" value="3" checked="">社会福祉法人</label>
-					            </div>
-					            <div class="c-w240">
-					                <label>
-					                    <input class="chkbutton" type="checkbox" name="" value="4">個人の方</label>
-					            </div>
-					            <div class="c-w240">
-					                <label>
-					                    <input class="chkbutton" type="checkbox" name="" value="5">医療従事者の方</label>
-					            </div>
-					        </div>
-					    </div>
-
-					    <div class="checkArea__form form2">
-					        <legend class="servicesList-heading">サービスの内容で選ぶ</legend>
-					        <div class="checkArea__inner">
-					            <div class="c-w156">
-					                <label>
-					                    <input class="chkbutton" type="checkbox" name="" value="6">税務</label>
-					            </div>
-					            <div class="c-w156">
-					                <label>
-					                    <input class="chkbutton" type="checkbox" name="" value="7">財務</label>
-					            </div>
-					            <div class="c-w156">
-					                <label>
-					                    <input class="chkbutton" type="checkbox" name="" value="8">相続</label>
-					            </div>
-					            <div class="c-w240">
-					                <label>
-					                    <input class="chkbutton" type="checkbox" name="" value="9">事業承継</label>
-					            </div>
-					            <div class="c-w240">
-					                <label>
-					                    <input class="chkbutton" type="checkbox" name="" value="10">ビジネスサポート</label>
-					            </div>
-					        </div>
-					    </div>
-					</form>
+					<div class="checkArea__form form2">
+						<legend class="servicesList-heading">サービスの内容で選ぶ</legend>
+						<div class="checkArea__inner">
+						<?php
+							$terms2 = get_terms(array( 
+								'taxonomy' => 'service_content',
+								'orderby'    => 'ID'
+							));
+						?>
+						<?php if ($terms2):?>
+						<?php foreach ($terms2 as $term) : ?>
+							<div class="<?php echo (mb_strlen($term->name) > 3) ? 'c-w240' : 'c-w156' ?>">
+								<label>
+									<input class="chkbutton" type="checkbox" name="my_checkbox[]" onchange="sendQuery()" value="<?php echo ( $term->slug)?>"><?php echo ( $term->name)?></label>
+							</div>
+						<?php endforeach;?>	
+						<?php endif;?>	
+						</div>
+					</div>
+				</form>
 				</div>
-
-				<p class="p-service__result">23件が該当しました</p>
-
+				<?php $args  = array(
+					'post_type' => 'service_post',
+					'order' => 'ASC',
+					'posts_per_page' => 40
+				);?>
+				<?php $service_query = new WP_Query($args);?>
+				<p class="p-service__result"><?php echo wp_count_posts('service_post')->publish ;?>件が該当しました</p>
 
 				<ul class="c-column">
-					<?php 
-						$args  = array(
-							'post_type' => 'service_post',
-							'posts_per_page' => 12
-						);
-						$service_query = new WP_Query($args);
-					?>
+					
 					<?php if ( $service_query->have_posts() ) : ?>
 						<?php while ( $service_query->have_posts() ) : 
 							$service_query->the_post(); 
@@ -100,11 +89,47 @@
 				</ul>
 
 				<div class="endcontent">
-					<img src="assets/img/img_more05.png" alt="">
-					<img src="assets/img/img_more06.png" alt="">
+					<img src="<?php echo get_template_directory_uri() ?>/assets/img/img_more05.png" alt="<?php echo get_the_title();?>">
+					<img src="<?php echo get_template_directory_uri() ?>/assets/img/img_more06.png" alt="<?php echo get_the_title();?>">
 				</div>
 			</div>
 		</div>
 	</main>
 
 <?php get_footer();?>
+<script>
+	function sendQuery() {
+		var selectedTaxonomies = [];
+		$("input[name='my_checkbox[]']:checked").each(function() {
+			selectedTaxonomies.push($(this).val());
+		});
+
+		console.log(selectedTaxonomies)
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo admin_url('admin-ajax.php'); ?>',
+			dataType: 'html',
+			data: {
+				action: 'filter_service',
+				taxonomies: selectedTaxonomies
+			},
+			success: function(response) {
+				var res = JSON.parse(response);
+				if (res[0] != undefined && res[0].html != undefined) {
+					$('.c-column').html(res[0].html);
+				} else {
+					$('.c-column').html(' ');
+				}
+
+				if (res[0] != undefined && res[0].counter != undefined) {
+					$('.p-service__result').html(res[0].counter + '件が該当しました');
+				} else {
+					$('.p-service__result').html('0件が該当しました');
+				}
+			},
+			error: function(xhr, status, error) {
+				console.log(error);
+			}
+		})
+	}
+</script>

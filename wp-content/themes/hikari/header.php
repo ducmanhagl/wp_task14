@@ -20,7 +20,7 @@
                 <ul>
                     <li><a href="<?php echo home_url('/service')?>">サービス</a></li>
                     <li><a href="publish.html">出版物</a></li>
-                    <li><a href="contact.html">お問い合わせ</a></li>
+                    <li><a href="<?php echo home_url('/contact')?>">お問い合わせ</a></li>
                 </ul>
             </nav>
         </div>
