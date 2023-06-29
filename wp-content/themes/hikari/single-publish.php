@@ -3,8 +3,8 @@
 	<main class="p-publish">
 		<div class="c-breadcrumb">
 			<div class="l-container">
-				<a href="index.html">Home</a>
-				<a href="publish.html">出版物</a>
+				<a href="<?php echo home_url("/");?>">Home</a>
+				<a href="<?php echo home_url("/publish");?>">出版物</a>
 				<span>社長に“もしものこと”があったときの手続きすべて</span>
 			</div>
 		</div>
@@ -22,11 +22,16 @@
 					<?php $unixtimestamp = strtotime( get_field( 'publication-date' ) );?>
 					<p class="datepost"><?php echo date_i18n( "Y年m月d日", $unixtimestamp );?> 発行</p>
 					<p class="author">
+					<?php if (get_field('author')):?>
 					著者  : <?php echo get_field('author'); ?><br>
+					<?php endif; ?>
+					<?php if (get_field('publisher')):?>
 					出版社 : <?php echo get_field('publisher'); ?>
 					</p>
+					<?php endif; ?>
+					<?php if (get_field('price')):?>
 					<p class="price"><?php echo get_field('price'); ?></p>
-					
+					<?php endif; ?>
 					<div class="desc">
 						<p><?php echo get_field('description'); ?></p>
 

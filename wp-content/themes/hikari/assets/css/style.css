@@ -1360,3 +1360,80 @@ Utity
 .u-bborder {
   border-bottom: 1px solid #ccc;
 }
+/* ========== CUSTOM ================= */
+.c-mainvisual img{
+  object-fit: cover;
+  max-height: 100vh;
+}
+.c-btn a{
+  word-wrap: break-word;
+  padding: 15px 15px;
+}
+.c-tabs{
+  align-items: center;
+}
+.c-listpost__info{
+  display: flex;
+  flex: 1;
+}
+.c-tabs__content .datepost{
+  width: 40%;
+}
+.c-listpost__info .cat{
+  display: flex;
+  flex-direction: column;
+}
+.c-listpost__info .cat__item{
+  margin-bottom: 5px;
+}
+.c-gridpost__thumb{
+  min-height: 263px;
+}
+.c-tabs .c-tabs__list {
+  width: 175px;
+  padding: 15px 0;
+  text-align: center;
+  cursor: pointer;
+}
+.c-tabs .c-tabs__list + .c-tabs__list {
+  border-left: 1px solid #ccc;
+}
+.c-pagination .current{
+  color: #fff;
+    background-color: #0078d2;
+    display: inline-block;
+    width: 45px;
+    line-height: 45px;
+    margin: 0 5px;
+}
+.l-btn{
+  margin-top: 15px;
+}
+.c-title404 {
+  font-size: 9rem;
+  color: #0078d2;
+  text-align: center;
+  margin-top: 30px;
+}
+.c-main__content {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+.c-main__content p {
+  margin-bottom: 20px;
+}
+.mw_wp_form .c-btn__back{
+  display: none;
+}
+.mw_wp_form.mw_wp_form_confirm .c-btn__reset{
+  display: none;
+}
+.mw_wp_form.mw_wp_form_confirm .c-btn__back{
+  display: block;
+}
+.mw_wp_form .error{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

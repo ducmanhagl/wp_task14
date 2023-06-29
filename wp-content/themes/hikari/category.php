@@ -35,14 +35,18 @@
                             <span class="cat">
                             <?php $categories_list_2 = get_the_category( $post->ID ); ?>
                             <?php foreach ($categories_list_2 as $cat) :?> 
+                                
                                 <?php if($cat->name == $term->name):?>
+                                    <div class="cat__item">
                                     <?php $color_list_2 = get_field('colors', 'category_'.$cat->term_id);?>
                                 <i class="c-dotcat" style="background-color: <?php echo $color_list_2?>"></i>
                                     <?php $category_link_2 = get_category_link($cat->cat_ID);?>
                                 <a href=" <?php echo $category_link_2; ?>">
                                     <?php echo $cat->name;?>
                                 </a>
+                                </div>
                                 <?php endif;?>
+                                
                                 <?php endforeach; ?>
                             </span>
                         </div>

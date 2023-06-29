@@ -59,4 +59,17 @@
   }
 
 add_action('wp_ajax_filter_service', 'filter_service');
-add_action('wp_ajax_nopriv_filter_service', 'filter_service');
+add_action('wp_ajax_nopriv_filter_service', 'filter_service'); 
+
+// VALIDATE MESSAGE 
+function validation_rule($validation, $data, $Data) {
+	$validation->set_rule('firstname', 'noempty', array('message' => 'お名前を入力してください'));
+  $validation->set_rule('lastname', 'noempty', array('message' => 'お名前を入力してください'));
+  $validation->set_rule('emailconfirm', 'noempty', array('message' => 'お名前を入力してください'));
+  $validation->set_rule('email', 'noempty', array('message' => 'お名前を入力してください'));
+  $validation->set_rule('message', 'noempty', array('message' => 'お名前を入力してください'));
+  $validation->set_rule('tel', 'numeric', array('message' => '電話番号を入力してください'));
+  $validation->set_rule('tel', 'between', array('min' => 10,'max' => 11,'message' => '10～11文字を入力してください'));
+  return $validation;
+}
+add_filter('mwform_validation_mw-wp-form-182', 'validation_rule', 10, 3);

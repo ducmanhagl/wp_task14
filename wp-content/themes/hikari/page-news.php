@@ -19,7 +19,7 @@
                     <?php foreach ($categories as $key => $category) :?> 
                     <?php $color = get_field('colors', 'category_'.$category->term_id);?>
                     <?php $category_link = get_category_link($category->cat_ID); ?>
-                    <a href="<?php echo $category_link;?>"><?php echo $category->name;?></a>
+                    <a href="<?php echo $category_link;?>" class="c-tabs__list"><?php echo $category->name;?></a>
                     <?php endforeach; ?>
                 </ul>
                 <div class="c-tabs__content">
@@ -40,14 +40,17 @@
                         <li class="c-listpost__item">
                             <div class="c-listpost__info">
                                 <span class="datepost"><?php echo get_the_date('Y年m月d日')?></span>
-                                <span class="cat">
+                                <div class="cat">
                                 <?php $categories_list = get_the_category( $post->ID ); ?>
                                 <?php foreach ($categories_list as $cat) :?>
+                                    <div class="cat__item">
                                     <?php $color_list = get_field('colors', 'category_'.$cat->term_id);?>
+                                    <?php $category_link_2 = get_category_link($cat->cat_ID);?>
                                     <i class="c-dotcat" style="background-color: <?php echo $color_list?>"></i>
-                                    <a href="news-cat.html"><?php echo $cat->name;?></a>
+                                    <a href="<?php echo $category_link_2; ?>"><?php echo $cat->name;?></a>
+                                    </div>
                                 <?php endforeach; ?>
-                                </span>
+                                </div>
                             </div>
                             <h3 class="titlepost"><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h3>
                         </li>
