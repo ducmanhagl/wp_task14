@@ -9,11 +9,11 @@
                 <div class="c-footer__link">
                     <h3><a href="<?php echo home_url('/news')?>">ニュース</a></h3>
                     <ul class="c-boxlink">
-                        <li><a href="<?php echo home_url('/news/category/notice/')?>">お知らせ</a></li>
-                        <li><a href="<?php echo home_url('/news/category/tax/')?>">税の最新情報</a></li>
-                        <li><a href="<?php echo home_url('/news/category/tax_reform/')?>">税制改正</a></li>
-                        <li><a href="<?php echo home_url('/news/category/information/')?>">掲載情報</a></li>
-                        <li><a href="<?php echo home_url('/news/category/back_number/')?>">バックナンバー</a></li>
+                        <li><a href="<?php echo home_url('/news/category/お知らせ/')?>">お知らせ</a></li>
+                        <li><a href="<?php echo home_url('/news/category/税の最新情報/')?>">税の最新情報</a></li>
+                        <li><a href="<?php echo home_url('/news/category/税制改正/')?>">税制改正</a></li>
+                        <li><a href="<?php echo home_url('/news/category/掲載情報/')?>">掲載情報</a></li>
+                        <li><a href="<?php echo home_url('/news/category/バックナンバー/')?>">バックナンバー</a></li>
                     </ul>
                 </div>
 

@@ -12,7 +12,12 @@
 		<div class="p-news__content">
 			<div class="l-container">
 				<div class="feature_img">
-					<img src="assets/img/img_news.png" alt="">
+				<?php if (has_post_thumbnail( $post->ID ) ): ?>
+					<?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+					<img src="<?php echo $image[0]; ?>" alt="<?php the_title();?>">
+				<?php else :?>
+					<img src="<?php echo get_template_directory_uri() ?>/assets/img/img_news.png" alt="<?php the_title();?>">
+				<?php endif; ?>
 				</div>
 
 				<div class="c-ttlpostpage">

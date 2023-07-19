@@ -1,6 +1,61 @@
 <?php
+  add_theme_support( 'post-thumbnails', array( 'post' ));
   add_theme_support( 'post-thumbnails', array( 'publish' ));
   add_theme_support( 'post-thumbnails', array( 'service_post' ));
+
+  // Set no title for post
+  add_action('edit_form_advanced', 'force_post_title');
+  function force_post_title($post)
+  {
+
+      // List of post types that we want to require post titles for.
+      $post_types = array(
+          'post',
+          'publish',
+          'service_post'
+          // 'event', 
+          // 'project' 
+      );
+
+      // If the current post is not one of the chosen post types, exit this function.
+      if (!in_array($post->post_type, $post_types)) {
+          return;
+      }
+
+  ?>
+      <script type='text/javascript'>
+          (function($) {
+              $(document).ready(function() {
+                  //Require post title when adding/editing Project Summaries
+                  $('body').on('submit.edit-post', '#post', function() {
+                      // If the title isn't set
+                      if ($("#title").val().replace(/ /g, '').length === 0) {
+                          // Show the alert
+                          if (!$("#title-required-msj").length) {
+                              $("#titlewrap")
+                                  .append('<div id="title-required-msj"><em>タイトルが必要です。</em></div>')
+                                  .css({
+                                      "padding": "5px",
+                                      "margin": "5px 0",
+                                      "background": "#ffebe8",
+                                      "border": "1px solid #c00"
+                                  });
+                          }
+                          // Hide the spinner
+                          $('#major-publishing-actions .spinner').hide();
+                          // The buttons get "disabled" added to them on submit. Remove that class.
+                          $('#major-publishing-actions').find(':button, :submit, a.submitdelete, #post-preview').removeClass('disabled');
+                          // Focus on the title field.
+                          $("#title").focus();
+                          return false;
+                      }
+                  });
+              });
+          }(jQuery));
+      </script>
+  <?php
+  }
+  // AJAX 
   function filter_service(){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $selectedTaxonomies = isset($_POST['taxonomies']) ? $_POST['taxonomies'] : array();

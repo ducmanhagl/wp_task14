@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+
 <?php get_header();?>
     <main class="p-news">
         <div class="c-breadcrumb">
@@ -13,13 +12,14 @@
         </div>
         <div class="p-news__content">
             <div class="l-container">
-                <ul class="c-tabs">
+                <ul class="c-tabs__1">
                     <li data-content="all" data-color="#0078d2" class="active">すべて</li>
+                    
                     <?php $categories = get_categories(); ?>
                     <?php foreach ($categories as $key => $category) :?> 
                     <?php $color = get_field('colors', 'category_'.$category->term_id);?>
                     <?php $category_link = get_category_link($category->cat_ID); ?>
-                    <a href="<?php echo $category_link;?>" class="c-tabs__list"><?php echo $category->name;?></a>
+                    <li><a href="<?php echo $category_link;?>" class="c-tabs__list"><?php echo $category->name;?></a></li>
                     <?php endforeach; ?>
                 </ul>
                 <div class="c-tabs__content">
@@ -28,7 +28,8 @@
                             $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
                             $args  = array(
                                 'post_type' => 'post',
-                                'posts_per_page' => 5,
+                                'posts_per_page' => 10,
+                                'orderby' => 'date', 
                                 'paged' => $paged
                             );
                             $new_query = new WP_Query($args);
@@ -56,6 +57,7 @@
                         </li>
                             <?php endwhile; ?>
 			            <?php endif; ?>
+                    </ul>
                         <?php wp_reset_postdata();?>
                         <div class="c-pagination">
                             <?php 

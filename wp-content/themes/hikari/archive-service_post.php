@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="feature_img">
-			<img src="assets/img/img_services01.png" alt="">
+			<img src="<?php echo get_template_directory_uri() ?>/assets/img/img_services01.png" alt="ご提供サービス">
 		</div>
 		<div class="p-service__content">
 			<div class="l-container">
@@ -65,7 +65,7 @@
 				</div>
 				<?php $args  = array(
 					'post_type' => 'service_post',
-					'order' => 'ASC',
+					'order' => 'DESC', 
 					'posts_per_page' => 40
 				);?>
 				<?php $service_query = new WP_Query($args);?>
@@ -80,7 +80,9 @@
 						?>
 						<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'single-post-thumbnail'); ?>
 					<li class="c-column__item"><a href="<?php the_permalink(); ?>">
+						<?php if ($image[0]):?>
 						<img src="<?php echo $image[0]; ?>" alt="<?php the_title();?>">
+						<?php endif; ?>
 						<p><?php the_title();?></p></a>
 					</li>
 					<?php endwhile; ?>

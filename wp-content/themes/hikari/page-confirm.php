@@ -5,6 +5,7 @@
 			<div class="l-container">
 				<a href="<?php echo home_url("/");?>">Home</a>
 				<span>お問い合わせ</span>
+				<span>お問い合わせ内容確認</span>
 			</div>
 		</div>
 		<div class="c-headpage">

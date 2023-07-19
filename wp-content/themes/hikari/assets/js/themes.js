@@ -39,6 +39,9 @@ for (var i = 0; i < elements.length; i++) {
     if (element.innerHTML === 'This is not in agreement.') {
         element.innerHTML = 'メールは同じではありません';
     }
+    if (element.innerHTML === 'This is not the format of a mail address.') {
+        element.innerHTML = 'これはメールアドレスの形式ではありません。';
+    }
 }
 
 

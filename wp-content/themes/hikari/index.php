@@ -6,7 +6,9 @@
                 the_row(); 
                 $mv_image = get_sub_field('image');
             ?>
+            <?php if( $mv_image ): ?>
             <div><img src="<?php echo $mv_image['url']?>" alt="<?php echo $mv_image['title']?>"></div>
+            <?php endif;?> 
             <?php endwhile;?>
         <?php endif;?>    
         </div>
@@ -148,7 +150,9 @@
                         <?php 
                             $args  = array(
                                 'post_type' => 'publish',
+                                'orderby' => 'rand' ,
                                 'posts_per_page' => 4
+                                
                             );
                             $publish_query = new WP_Query($args);
                         ?>

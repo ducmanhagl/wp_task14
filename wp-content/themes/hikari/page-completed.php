@@ -4,6 +4,7 @@
 		<div class="c-breadcrumb">
 			<div class="l-container">
 				<a href="<?php echo home_url('/')?>">Home</a>
+				<span>お問い合わせ</span>
 				<span><?php the_title();?></span>
 			</div>
 		</div>

@@ -127,7 +127,7 @@
 
 				<div class="l-btn">
 					<div class="c-btn c-btn--small">
-						<a href="<?php echo home_url("/publish");?>">ご提供サービス一覧へ</a>
+						<a href="<?php echo home_url("/service_post");?>">ご提供サービス一覧へ</a>
 					</div>
 				</div>
 			</div>

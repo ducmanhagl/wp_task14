@@ -254,7 +254,7 @@ Component
   width: 48%;
 }
 
-.l-btn--2btn .c-btn + .c-btn {
+.l-btn--2btn .c-btn + .c-btn.c-btn__padding {
   padding-left: 4%;
 }
 
@@ -660,7 +660,7 @@ Layout
 .c-header {
   position: relative;
   z-index: 999;
-  padding: 20px 0 0px;
+  padding: 20px 0 20px;
   -webkit-box-shadow: 0px 2px 5px #333;
           box-shadow: 0px 2px 5px #333;
 }
@@ -679,7 +679,8 @@ Layout
   display: flex;
 }
 
-.c-gnav li {
+.c-gnav li a{
+  display: inline-block;
   padding: 20px 30px;
 }
 
@@ -692,7 +693,7 @@ Layout
   background-color: #0078d2;
 }
 
-.c-gnav li:last-child:before {
+.c-gnav li:last-child a:before {
   content: "\f0e0";
   font-family: "fontAwesome";
   font-size: 2rem;
@@ -700,7 +701,7 @@ Layout
   vertical-align: top;
 }
 
-.c-gnav li:hover {
+.c-gnav li:not(.active):hover {
   background-color: #0078d2;
   color: #fff;
 }
@@ -1387,7 +1388,7 @@ Utity
   margin-bottom: 5px;
 }
 .c-gridpost__thumb{
-  min-height: 263px;
+  min-height: 210px;
 }
 .c-tabs .c-tabs__list {
   width: 175px;
@@ -1436,4 +1437,116 @@ Utity
 .mw_wp_form .error{
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+
+/* ============= FIX FB */
+.c-gnav li:hover{
+  cursor: pointer;
+}
+.c-tabs li:not(.active):hover,
+.c-listpost__info .cat__item:hover,
+.titlepost a:hover{
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+  -ms-filter: "alpha(opacity=70)";
+}
+
+.p-publish .c-gridpost__info h3,.p-home .c-gridpost h3,.c-column__item p{
+  overflow: hidden;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+.c-column__item p{
+  padding-right: 20px;
+}
+.c-gnav li.active:hover a,.c-gnav li.active{
+  opacity: 1;
+  cursor: default;
+  pointer-events: none;
+}
+.c-btn{
+  position: relative;
+  
+}
+.c-btn.c-btn__arrow::after{
+  content: "\f105";
+    font-family: "fontAwesome";
+    font-size: 2rem;
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    right: 20px;
+    top: 50%;
+  transform: translateY(-50%);
+}
+.c-btn.c-btn__arrow:hover:after{
+  background-color: #fff;
+  color: #0078d2;
+}
+.c-btn input[type=reset], .c-btn input[type=submit]{
+  display: block;
+    padding: 15px 0;
+    text-align: center;
+    color: #fff;
+    background-color: #0078d2;
+    border: 2px solid #0078d2;
+    position: relative;
+}
+.c-td__group{
+  display: flex;
+}
+.mw_wp_form:not(.mw_wp_form_confirm) .c-td__item{
+  max-width: 280px;
+  width: 100%;
+  margin-right: 25px;
+}
+.p-contact tr:first-child input:last-child{
+  margin-left: 0;
+}
+.p-contact tr:first-child input{
+  width: 258px;
+}
+.p-contact table input{
+  font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
+}
+
+.c-tabs__1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #f3f3f3;
+}
+
+.c-tabs__1 li {
+  width: 175px;
+  padding: 15px 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.c-tabs__1 li + li {
+  border-left: 1px solid #ccc;
+}
+
+.c-tabs__1 li.active {
+  background-color: #0078d2;
+  border-top-color: #0078d2;
+  color: #fff;
+  position: relative;
+}
+
+.c-tabs__1 li.active:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-top-color: inherit;
+  position: absolute;
+  bottom: -14px;
+  left: calc(50% - 10px);
 }

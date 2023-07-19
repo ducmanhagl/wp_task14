@@ -17,7 +17,7 @@
                 $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
                     $args  = array(
                         'post_type' => 'publish',
-                        'posts_per_page' => 10,
+                        'posts_per_page' => 12,
                         'paged' => $paged
                     );
                     $publish_query = new WP_Query($args);
